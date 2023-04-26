@@ -1,0 +1,30 @@
+<form class="form order" [formGroup]="formOrder" (submit)="submit()">
+  <div class="tui-form__row">
+    <tui-input tuiTextfieldSize="s" formControlName="name"> Имя </tui-input>
+  </div>
+
+  <div class="tui-form__row">
+    <tui-input tuiTextfieldSize="s" formControlName="email"> Email </tui-input>
+  </div>
+
+  <div class="tui-form__row">
+    <tui-input formControlName="email">Адрес доставки</tui-input>
+  </div>
+  <!--   
+  <select (change)="addCountry($event)">
+    <option *ngFor="let city of countries" [ngValue]="city">
+      {{ city[0] }}
+    </option>
+  </select> -->
+
+  <div class="tui-form__row buttons">
+    <button
+      [disabled]="formOrder.invalid"
+      tuiButton
+      class="tui-form__button"
+      size="s"
+      type="submit">
+      Добавить
+    </button>
+  </div>
+</form>
