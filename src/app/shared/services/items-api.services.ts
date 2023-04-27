@@ -9,7 +9,7 @@ const host = 'http://localhost:3000/items';
 @Injectable()
 export class ItemsApiService implements IItemsApiService {
   constructor(private readonly httpClient: HttpClient) {}
-  getAll(): Observable<Item[]> {
+  public getAll(): Observable<Item[]> {
     return this.httpClient.get<Item[]>(host);
   }
 }

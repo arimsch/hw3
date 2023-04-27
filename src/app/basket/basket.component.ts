@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { BasketService } from '../shared/services/basket.service';
 import { Item } from '../shared/models/item';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-basket',
@@ -16,10 +17,6 @@ import { Item } from '../shared/models/item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasketComponent implements OnInit, OnDestroy {
-  public items: Item[] = [];
-  public sum = 0;
-  public courseSymbol = '$';
-
   @Output()
   public changePage = new EventEmitter<null>();
 
@@ -27,14 +24,25 @@ export class BasketComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.basketService.initialize();
-    this.basketService.items$.subscribe(data => {
-      this.items = data;
-      this.sum = this.basketService.summary;
+    this.basketService.items$.subscribe(() => {
+      this.items;
     });
   }
 
   ngOnDestroy(): void {
     this.basketService.items$.unsubscribe();
+  }
+
+  public get summary$(): Observable<number> {
+    return this.basketService.sum$;
+  }
+
+  public get items(): Item[] {
+    return this.basketService.selectedItems;
+  }
+
+  public get currencySymbol$(): Observable<string> {
+    return this.basketService.currency$;
   }
 
   public togglePage(): void {

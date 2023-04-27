@@ -4,26 +4,31 @@
   </div>
 
   <div class="tui-form__row">
-    <tui-input tuiTextfieldSize="s" formControlName="email"> Email </tui-input>
+    <tui-input tuiTextfieldSize="s" formControlName="mail"> Email </tui-input>
+    <tui-error [error]="computedErrorMailInput"></tui-error>
   </div>
 
   <div class="tui-form__row">
-    <tui-input formControlName="email">Адрес доставки</tui-input>
+    <tui-input formControlName="adress">Адрес доставки</tui-input>
   </div>
-  <!--   
-  <select (change)="addCountry($event)">
-    <option *ngFor="let city of countries" [ngValue]="city">
-      {{ city[0] }}
-    </option>
-  </select> -->
+  <tui-combo-box
+    class="b-form"
+    formControlName="country"
+    (ngModelChange)="countryChange($event)">
+    Страна доставки
+    <input tuiTextfield placeholder="Название" />
+    <tui-data-list-wrapper
+      *tuiDataList
+      [items]="countries"></tui-data-list-wrapper>
+  </tui-combo-box>
 
   <div class="tui-form__row buttons">
     <button
-      [disabled]="formOrder.invalid"
       tuiButton
       class="tui-form__button"
       size="s"
-      type="submit">
+      type="submit"
+      [disabled]="formOrder.invalid">
       Добавить
     </button>
   </div>

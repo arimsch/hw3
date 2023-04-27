@@ -12,6 +12,9 @@ import { BasketService } from './shared/services/basket.service';
 import { TuiRootModule } from '@taiga-ui/core';
 import { CountriesService } from './shared/services/countries.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CurrencyInterceptorService } from './shared/services/currency-interceptor.service';
+import { CourseService } from './shared/services/course.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +31,13 @@ import { HttpClientModule } from '@angular/common/http';
     { provide: IItemsApiServiceToken, useClass: ItemsApiService },
     BasketService,
     CountriesService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CurrencyInterceptorService,
+      multi: true,
+    },
+    CourseService,
+    ItemsApiService,
   ],
   bootstrap: [AppComponent],
 })

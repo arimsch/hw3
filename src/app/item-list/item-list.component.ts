@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Item } from '../shared/models/item';
 import { BasketService } from '../shared/services/basket.service';
+import { ItemsApiService } from '../shared/services/items-api.services';
 
 @Component({
   selector: 'app-item-list',
@@ -8,6 +9,9 @@ import { BasketService } from '../shared/services/basket.service';
   styleUrls: ['./item-list.component.less'],
 })
 export class ItemListComponent {
+  @Output()
+  changePage = new EventEmitter<null>();
+
   public items: Item[] = [
     {
       id: 1,
@@ -16,12 +20,17 @@ export class ItemListComponent {
       count: 1,
     },
   ];
-  @Output()
-  changePage = new EventEmitter<null>();
 
-  constructor(private readonly basketService: BasketService) {}
+  constructor(
+    private readonly basketService: BasketService,
+    private readonly itemsApiService: ItemsApiService
+  ) {}
 
-  public togglePage() {
+  // ngOnInit(): void {
+  //   // this.itemsApiService.getAll().subscribe(data => console.log(data));
+  // }
+
+  public togglePage(): void {
     this.changePage.emit(null);
   }
 

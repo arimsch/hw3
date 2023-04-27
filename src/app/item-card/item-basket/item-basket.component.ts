@@ -7,7 +7,6 @@ import { Item } from '../../shared/models/item';
   styleUrls: ['./item-basket.component.less'],
 })
 export class ItemBasketComponent {
-  public extended = false;
   @Input()
   public item!: Item;
   @Input()
@@ -17,6 +16,8 @@ export class ItemBasketComponent {
   public update = new EventEmitter<Item>();
   @Output()
   public delete = new EventEmitter<Item>();
+
+  public extended = false;
 
   public updateItem(item: Item): void {
     this.update.emit(item);

@@ -31,7 +31,7 @@ export class ItemCardComponent {
   public item!: Item;
 
   @Input()
-  public elUpdate!: Boolean;
+  public elUpdate!: boolean;
 
   @Output()
   public add = new EventEmitter<Item>();

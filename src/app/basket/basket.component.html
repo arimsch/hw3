@@ -4,7 +4,7 @@
     [item]="i"
     (update)="updateItem($event)"
     (delete)="deleteItem($event)"></app-item-basket>
-  <div>Итого: {{ sum | formatPrice : courseSymbol }}</div>
+  <div>Итого: {{ summary$ | async }}{{ currencySymbol$ | async }}</div>
 </section>
 <app-add-order></app-add-order>
 <button

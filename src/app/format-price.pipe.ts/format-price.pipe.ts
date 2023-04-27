@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatPricePipe implements PipeTransform {
   transform(value: number, args?: string): string {
-    let defaultCourse = '$';
+    const defaultCourse = 'Р';
     if (!args) {
       return `${value}${defaultCourse}`;
     } else {
